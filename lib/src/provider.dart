@@ -134,13 +134,13 @@ class _MeasuredSizedState extends State<_MeasuredSized> {
   @override
   Widget build(BuildContext context) {
     if (widget.onChange == null) return widget.child;
-    SchedulerBinding.instance!.addPostFrameCallback(postFrameCallback);
+    SchedulerBinding.instance.addPostFrameCallback(postFrameCallback);
     return UnconstrainedBox(
       child: Container(
         key: widgetKey,
         child: NotificationListener<SizeChangedLayoutNotification>(
           onNotification: (_) {
-            SchedulerBinding.instance?.addPostFrameCallback(postFrameCallback);
+            SchedulerBinding.instance.addPostFrameCallback(postFrameCallback);
             return true;
           },
           child: SizeChangedLayoutNotifier(child: widget.child),
