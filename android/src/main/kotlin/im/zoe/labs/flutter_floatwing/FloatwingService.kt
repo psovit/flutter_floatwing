@@ -285,8 +285,12 @@ class FloatwingService : MethodChannel.MethodCallHandler, BasicMessageChannel.Me
         }.toMap()
     }
 
-     private fun emitDestroy(force: Boolean = false) {
-        it.emit("destroy", force)
+     private fun emitDestroy(id: String, force: Boolean = false) {
+        // check if id exits
+        windows[id]?.also {
+            it.emit("destroy", force)
+        }
+
     }
 
     // this function is useful when we want to start service automatically

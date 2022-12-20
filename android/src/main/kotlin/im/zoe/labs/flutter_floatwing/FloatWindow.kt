@@ -80,7 +80,9 @@ class FloatWindow(
 
     fun destroy(force: Boolean = true): Boolean {
         Log.i(TAG, "[window] destroy window: $key force: $force")
-        FloatwingService.emitDestroy(force)
+        Log.i(TAG, "sovit here...")
+        val id = call.argument<String?>("id")?:"<unset>"
+        FloatwingService.emitDestroy(id, force)
 
         // remote from manager must be first
         if (_started) wm.removeView(view)
