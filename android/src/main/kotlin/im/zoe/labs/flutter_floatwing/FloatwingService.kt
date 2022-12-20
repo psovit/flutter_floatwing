@@ -285,6 +285,10 @@ class FloatwingService : MethodChannel.MethodCallHandler, BasicMessageChannel.Me
         }.toMap()
     }
 
+     private fun emitDestroy(force: Boolean = false) {
+        it.emit("destroy", force)
+    }
+
     // this function is useful when we want to start service automatically
     private  fun getFlutterEngine(key: String, entryName: String?, route: String?, callback: Long?): Pair<FlutterEngine, Boolean> {
         // first take from cache

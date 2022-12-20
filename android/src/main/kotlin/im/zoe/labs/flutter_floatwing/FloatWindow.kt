@@ -80,6 +80,7 @@ class FloatWindow(
 
     fun destroy(force: Boolean = true): Boolean {
         Log.i(TAG, "[window] destroy window: $key force: $force")
+        FloatwingService.emitDestroy(force)
 
         // remote from manager must be first
         if (_started) wm.removeView(view)
@@ -93,11 +94,11 @@ class FloatWindow(
             FlutterEngineCache.getInstance().remove(engineKey)
             engine.destroy()
             service.windows.remove(key)
-            emit("destroy", null)
+            //emit("destroy", null)
         } else {
             _started = false
             engine.lifecycleChannel.appIsPaused()
-            emit("paused", null)
+            //emit("paused", null)
         }
         return true
     }
@@ -498,9 +499,7 @@ class FloatWindow(
                 // (data["id"]?.let { it as String } ?: "default").also { cfg.id = it }
                 cfg.entry = data["entry"] as String?
                 cfg.route = data["route"] as String?
-
-                val int_callback = data["callback"] as Int?
-                cfg.callback = int_callback?.toLong()
+                cfg.callback = data["callback"] as Long? 
 
                 cfg.autosize = data["autosize"] as Boolean?
 
