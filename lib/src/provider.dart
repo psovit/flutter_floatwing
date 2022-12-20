@@ -127,7 +127,7 @@ class _MeasuredSized extends StatefulWidget {
 class _MeasuredSizedState extends State<_MeasuredSized> {
   @override
   void initState() {
-    SchedulerBinding.instance!.addPostFrameCallback(postFrameCallback);
+    SchedulerBinding.instance.addPostFrameCallback(postFrameCallback);
     super.initState();
   }
 
